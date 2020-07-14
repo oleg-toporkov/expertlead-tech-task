@@ -1,7 +1,7 @@
 import {ReqresService} from "../../api/service/reqresService";
 import {config} from "../../config/config";
 import {expect} from "chai";
-import {LoginRequestDTO} from "../../api/dto/loginRequestDTO";
+import {LoginRequestDTO} from "../../api/dto/login/loginRequestDTO";
 
 describe('Reqres service', () => {
 
