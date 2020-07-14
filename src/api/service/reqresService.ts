@@ -6,6 +6,7 @@ import {LoginResponseDTO} from "../dto/login/loginResponseDTO";
 import {expect} from "chai";
 import {CreateUserRequestDTO} from "../dto/user/createUserRequestDTO";
 import {CreateUserResponseDTO} from "../dto/user/createUserResponseDTO";
+import {GetUserResponseDTO} from "../dto/user/getUserResponseDTO";
 
 export class ReqresService {
 
@@ -43,6 +44,20 @@ export class ReqresService {
         const response = await this.postUsers(createUserRequestDTO);
         expect(response.status).to.be.equal(201); // Entity creation response code is 201 according to RFC
         return response.body as CreateUserResponseDTO;
+    }
+
+    static async getUserResponse(userId: number): Promise<request.Response> {
+        return request(this.HOST)
+            .get(`${ReqresEndpoints.GET_USERS}/${userId}`)
+            .on('response', (response) => {
+                console.log(`Received response for login:\n${JSON.stringify(response, null, '\t')}`);
+            });
+    }
+
+    static async getUser(userId: number): Promise<GetUserResponseDTO> {
+        const response = await this.getUserResponse(userId);
+        expect(response.status).to.be.equal(200);
+        return response.body as GetUserResponseDTO;
     }
 
 }

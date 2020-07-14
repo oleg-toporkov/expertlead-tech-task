@@ -25,4 +25,13 @@ describe('Reqres service', () => {
         expect(actualCreatedDate, 'User creation date is too early').to.be.at.most(createdAfter.toDate());
     });
 
+    it('should return user by id', async () => {
+        const userId = 3; // TODO better move to config or create before test
+        const emailDomain = '@reqres.in';
+
+        const userResponseDTO = await ReqresService.getUser(userId);
+        expect(userResponseDTO.data.email, 'User name is incorrect').to.be.a('string').and.satisfy(
+            (email: string) => email.endsWith(emailDomain));
+    });
+
 });
