@@ -7,6 +7,7 @@ import {expect} from "chai";
 import {CreateUserRequestDTO} from "../dto/user/createUserRequestDTO";
 import {CreateUserResponseDTO} from "../dto/user/createUserResponseDTO";
 import {GetUserResponseDTO} from "../dto/user/getUserResponseDTO";
+import {attachJson} from "../../report/allureReportWrapper";
 
 export class ReqresService {
 
@@ -17,9 +18,7 @@ export class ReqresService {
         return request(this.HOST)
             .post(ReqresEndpoints.POST_LOGIN)
             .send(loginRequestDTO)
-            .on('response', (response) => {
-                console.log(`Received response for login:\n${JSON.stringify(response, null, '\t')}`);
-            });
+            .on('response', (response) => attachJson('POST Login', response));
     }
 
     static async loginAs(email: string, password: string): Promise<LoginResponseDTO> {
@@ -34,9 +33,7 @@ export class ReqresService {
         return request(this.HOST)
             .post(ReqresEndpoints.POST_USERS)
             .send(createUserRequestDTO)
-            .on('response', (response) => {
-                console.log(`Received response for login:\n${JSON.stringify(response, null, '\t')}`);
-            });
+            .on('response', (response) => attachJson('POST Users', response));
     }
 
     static async createUser(name: string, job: string): Promise<CreateUserResponseDTO> {
@@ -49,9 +46,7 @@ export class ReqresService {
     static async getUserResponse(userId: number): Promise<request.Response> {
         return request(this.HOST)
             .get(`${ReqresEndpoints.GET_USERS}/${userId}`)
-            .on('response', (response) => {
-                console.log(`Received response for login:\n${JSON.stringify(response, null, '\t')}`);
-            });
+            .on('response', (response) => attachJson('GET Users', response));
     }
 
     static async getUser(userId: number): Promise<GetUserResponseDTO> {
