@@ -1,0 +1,7 @@
+ui: bdd
+reporter: mocha-multi
+timeout: 100000
+require:
+  - dotenv/config
+  - ts-node/register
+  - source-map-support/register
