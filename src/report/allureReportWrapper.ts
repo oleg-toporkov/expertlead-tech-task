@@ -18,3 +18,19 @@ export function attachJson(name: string, content: object) {
         console.warn(`Cannot attach JSON: ${e.message}`);
     }
 }
+
+export function feature(name: string): void {
+    try {
+        allure.feature(name);
+    } catch (e) {
+        console.warn(`Cannot add feature label: ${e.message}`);
+    }
+}
+
+export function story(name: string): void {
+    try {
+        allure.story(name);
+    } catch (e) {
+        console.warn(`Cannot add story label: ${e.message}`);
+    }
+}

@@ -2,10 +2,17 @@ import {getRandomInt} from "../../util/random";
 import {ReqresService} from "../../api/service/reqresService";
 import {expect} from "chai";
 import * as moment from "moment";
+import {feature, story} from "../../report/allureReportWrapper";
 
 describe('Reqres service', () => {
 
+    beforeEach(() => {
+        feature('Users');
+    });
+
     it('should create user', async () => {
+        story('As a user I want to create a new user');
+
         const userName = `Oleg Toporkov ${getRandomInt()}`;
         const job = 'QA Automation Engineer';
 
@@ -26,6 +33,8 @@ describe('Reqres service', () => {
     });
 
     it('should return user by id', async () => {
+        story('As a user I want to get user details');
+
         const userId = 3; // TODO better move to config or create before test
         const emailDomain = '@reqres.in';
 

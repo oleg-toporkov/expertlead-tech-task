@@ -2,8 +2,14 @@ import {ReqresService} from "../../api/service/reqresService";
 import {config} from "../../config/config";
 import {expect} from "chai";
 import {LoginRequestDTO} from "../../api/dto/login/loginRequestDTO";
+import {feature, story} from "../../report/allureReportWrapper";
 
 describe('Reqres service', () => {
+
+    beforeEach(() => {
+        story('As a user I want to be able to login');
+        feature('Login');
+    });
 
     it('should login user and return token', async () => {
         const responseDTO = await ReqresService.loginAs(config.api.reqres.user.email, config.api.reqres.user.password);
