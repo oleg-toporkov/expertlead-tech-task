@@ -25,7 +25,6 @@ First, install all dependencies using running [NPM](https://www.npmjs.com/) from
 
 ```
 #!bash
-
 npm install
 ```
 
@@ -47,7 +46,6 @@ Run the following command from project root
 ```
 #!bash
 npm run open-report
-
 ```
 
 
@@ -62,4 +60,5 @@ npm run open-report
 * Split one file with UI tests
 * Create one account for UI tests and reuse it as much as possible
 * Move browser init to other place
+* Not all screenshots attached to the report as page sometimes is still loading
 * See other TODOs ¯\_(ツ)_/¯ 
