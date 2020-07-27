@@ -7,7 +7,7 @@ import {MainPage} from "../../ui/page/mainPage";
 import {MyAccountPage} from "../../ui/page/myAccountPage";
 import {getRandomInt} from "../../util/random";
 import {expect} from "chai";
-import {Page} from "playwright";
+import {Browser, Page} from "playwright";
 import {DressesPage} from "../../ui/page/dressesPage";
 
 describe('Automationpractice web site', () => {
@@ -21,10 +21,11 @@ describe('Automationpractice web site', () => {
     let dressesPage: DressesPage;
 
     let page: Page;
+    let browser: Browser;
 
     before(async () => {
         // TODO something might be reusable, move to common place
-        const browser = await playwright[config.ui.browser].launch();
+        browser = await playwright[config.ui.browser].launch();
         const context = await browser.newContext();
         page = await context.newPage();
 
@@ -88,7 +89,7 @@ describe('Automationpractice web site', () => {
         
         await dressesPage.waitProductGridToBeLoaded();
 
-        const selectedCheckboxesCount = dressesPage.getSelectedCheckboxesCount();
+        const selectedCheckboxesCount = await dressesPage.getSelectedCheckboxesCount();
         expect(selectedCheckboxesCount, 'Some of the checkboxes are selected').to.be.equal(0);
     });
 
@@ -119,6 +120,12 @@ describe('Automationpractice web site', () => {
         for (let name of dressNames) {
             expect(name, 'Dress name is incorrect').to.contain('Summer');
         }
+    });
+
+
+    after(async () => {
+        await page.close();
+        await browser.close();
     });
 
 })

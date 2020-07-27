@@ -2,6 +2,8 @@ import {Page} from "playwright";
 import {HeaderComponent} from "../components/headerComponent";
 import {NavigationComponent} from "../components/navigationComponent";
 import {ElementHandle} from "playwright/types/types";
+import {step} from "../../report/allureReportWrapper";
+import {getScreenshot} from "../helpers";
 
 export class MainPage {
     private readonly page: Page;
@@ -20,10 +22,12 @@ export class MainPage {
     }
 
     public async waitForContentToBeLoaded(): Promise<ElementHandle<HTMLOrSVGElement>> {
+        await step('Wait for main page content to bew loaded', getScreenshot(this.page));
         return this.page.waitForSelector(this.contentContainerLocator);
     }
 
     public async getPopularTabState(): Promise<string> {
+        await step('Get "Popular" tab state', getScreenshot(this.page));
         return this.page.getAttribute(this.popularTabLocator, 'class');
     }
 }

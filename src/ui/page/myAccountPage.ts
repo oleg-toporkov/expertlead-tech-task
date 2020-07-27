@@ -1,6 +1,8 @@
 import {Page} from "playwright";
 import {HeaderComponent} from "../components/headerComponent";
 import {ElementHandle} from "playwright/types/types";
+import {step} from "../../report/allureReportWrapper";
+import {getScreenshot} from "../helpers";
 
 export class MyAccountPage {
     private readonly page: Page;
@@ -16,6 +18,7 @@ export class MyAccountPage {
     }
 
     public async getPageHeader(): Promise<string> {
+        await step('Get page header', getScreenshot(this.page));
         return this.page.textContent(this.pageHeadingLocator);
     }
 
