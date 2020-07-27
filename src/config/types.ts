@@ -1,9 +1,15 @@
 export interface IConfig {
     api: IApi;
+    ui: IUi;
 }
 
 export interface IApi {
     reqres: IReqRes;
+}
+
+export interface IUi {
+    url: string;
+    browser: string
 }
 
 export interface IReqRes {

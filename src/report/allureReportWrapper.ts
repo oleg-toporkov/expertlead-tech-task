@@ -2,6 +2,7 @@ import {
     AllureInterface,
     ContentType,
 } from 'allure2-js-commons';
+import {Page} from "playwright";
 
 require('mocha-allure2-reporter');
 declare let allure: AllureInterface;
@@ -32,5 +33,15 @@ export function story(name: string): void {
         allure.story(name);
     } catch (e) {
         console.warn(`Cannot add story label: ${e.message}`);
+    }
+}
+
+export async function step(name: string, screenshot: Promise<Buffer>) {
+    console.log(name);
+
+    try {
+        allure.attachment(name, await screenshot, ContentType.PNG);
+    } catch (e) {
+        console.warn(`Cannot attach screenshot: ${e.message}`);
     }
 }
