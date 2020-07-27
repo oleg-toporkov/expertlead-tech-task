@@ -13,7 +13,7 @@ export class DressesPage {
     private readonly listViewButtonLocator: string = 'css=[id=list]';
     private readonly dressPriceLocator: string = 'xpath=//div[contains(@class, "right-block")]//span[@class="price product-price"]';
     private readonly summerDressesFilterLocator: string = 'css=[id="layered_category_11"]';
-    private readonly spinnerLocator: string = 'xpath=//img[contains(@src, "loader")]';
+    private readonly spinnerLocator: string = 'xpath=//ul[@class="product_list row list"]//img[contains(@src, "loader")]';
     private readonly dressNameLocator: string = 'xpath=//ul[@class="product_list row list"]//a[@class="product-name" and @title]';
 
 
